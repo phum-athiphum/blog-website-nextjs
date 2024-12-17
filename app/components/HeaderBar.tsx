@@ -1,8 +1,12 @@
+"use client";
 import React from "react";
 import DefaultButton from "./button/DefaultButton";
 import Image from "next/image";
 import MENU_ICON from "@icons/menu.svg";
+import { useMobileSidebarStore } from "../stores/mobileSidebarStore";
+
 function HeaderBar() {
+const { toggleSidebar } = useMobileSidebarStore();
   return (
     <div className="w-full h-[72px] xl:h-[60px] px-2 xl:px-8 bg-darkgreen flex justify-between">
       <div className="flex justify-between w-full my-auto">
@@ -15,6 +19,7 @@ function HeaderBar() {
             src={MENU_ICON}
             alt="Menu Icon"
             className="w-6 h-6"
+            onClick={toggleSidebar}
           />
         </div>
       </div>
