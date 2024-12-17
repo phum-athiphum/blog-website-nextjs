@@ -11,6 +11,15 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        lightgreen: "#49A569",
+        mediumgreen: "#2B5F44",
+        darkgreen: "#243831",
+        softGrey: "#939494",
+        mediumGrey: "#4a4a4a",
+        darkBlue: "#101828"
+      },
+      fontFamily: {
+        sans: ['Castoro', 'sans-serif'],
       },
     },
   },
