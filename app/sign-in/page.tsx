@@ -1,19 +1,14 @@
 import React from "react";
 import Image from "next/image";
 import LOGO from "@images/logo.png"
-// import SigninForm from "../components/SigninForm";
-// import CreatePost from "../components/CreatePost";
-// import PostCard from "../components/PostCard";
 import CommentItem from "../components/CommentItem";
-import DeleteModal from "../components/modal/DeleteModal";
+import SigninForm from "../components/SigninForm";
 function SignInPage() {
   return (
-    <div className="flex flex-col xl:flex-row h-screen w-screen bg-darkgreen">
+    <div>
+          <div className="flex flex-col xl:flex-row h-screen w-screen bg-darkgreen">
       <div className="w-full xl:w-3/5 order-2 xl:order-1 p-4 h-3/5 xl:h-full flex justify-center items-center">
-        {/* <SigninForm /> */}
-        {/* <PostCard /> */}
-        {/* <DeleteModal /> */}
-        <CommentItem />
+        <SigninForm />
       </div>
       <div className="w-full xl:w-2/5 order-1 xl:order-2 bg-mediumgreen p-4 h-2/5 xl:h-full flex flex-col gap-4 items-center justify-center rounded-b-[36px] xl:rounded-l-[36px]">
         <Image
@@ -24,6 +19,8 @@ function SignInPage() {
         <h1 className="text-[22px] xl:text-[28px] text-white font-sans italic">a Board</h1>
       </div>
     </div>
+    </div>
+
   );
 }
 
