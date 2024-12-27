@@ -1,7 +1,6 @@
 import React from "react";
 import PostCard from "../components/PostCard";
 import SearchSection from "../components/homepage/SearchSection";
-import PostModal from "../components/modal/PostModal";
 
 function page() {
   return (
@@ -18,7 +17,6 @@ function page() {
         <PostCard />
         <PostCard />
       </div>
-      <PostModal/>
     </div>
   );
 }

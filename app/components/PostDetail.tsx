@@ -1,15 +1,18 @@
 "use client";
 import React from "react";
+import { useState } from "react";
 import Image from "next/image";
 import AVATAR_ONLINE from "@images/avatar-online.png";
 import BACK_ICON from "@icons/back-page.svg";
 import COMMENTS_ICON from "@icons/comments.svg";
 import OutlineButton from "./button/OutlineButton";
-import { useState } from "react";
 import DefaultButton from "./button/DefaultButton";
+import { useCreateCommentModalStore } from "../stores/createCommentModal";
+import CommentModal from "./modal/CommentModal";
 
 function PostDetail() {
   const [isShowTextArea, setIsShowTextArea] = useState<boolean>(false);
+  const { toggleModal } = useCreateCommentModalStore();
 
   const toggleTextArea = () => {
     setIsShowTextArea(!isShowTextArea);
@@ -17,6 +20,7 @@ function PostDetail() {
 
   return (
     <div className="flex flex-col">
+              <CommentModal/>
       <Image
         src={BACK_ICON}
         alt="Back Icon"
@@ -49,6 +53,10 @@ function PostDetail() {
         <p className="text-softGrey text-xs">32 Comments</p>
       </div>
 
+      <div className="block xl:hidden w-[132px] mb-6" onClick={toggleModal}>
+        <OutlineButton text={"Add Comments"} textSize={"12px"} />
+      </div>
+
       {isShowTextArea ? (
         <>
           <textarea
@@ -63,12 +71,14 @@ function PostDetail() {
           </div>
         </>
       ) : (
-        <div className="mb-6" onClick={toggleTextArea}>
-          <OutlineButton text={"Add Comments"} width={"132px"} textSize={"12px"}/>
+        <div className="mb-6 hidden xl:block" onClick={toggleTextArea}>
+          <OutlineButton
+            text={"Add Comments"}
+            width={"132px"}
+            textSize={"12px"}
+          />
         </div>
       )}
-
-      <div></div>
     </div>
   );
 }
