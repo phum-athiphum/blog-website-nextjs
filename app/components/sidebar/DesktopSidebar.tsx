@@ -6,14 +6,17 @@ import BLOG_ICON from "@icons/blog.svg"
 function DesktopSidebar() {
   return (
     <div className="hidden w-[280px] bg-[#bbc2c0] p-8 xl:flex flex-col gap-3 h-screen text-base">
-      <div className="flex gap-2">
+      <div className="pt-[60px]">
+      <div className="flex gap-2 h-10">
         <Image src={HOME_ICON} alt="Menu Icon" className="w-5 h-5" />
         <h4>Home</h4>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-2 h-10">
       <Image src={BLOG_ICON} alt="Menu Icon" className="w-5 h-5" />
         <h4>Blog</h4>
       </div>
+      </div>
+    
     </div>
   );
 }
