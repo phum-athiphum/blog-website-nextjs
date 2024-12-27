@@ -5,7 +5,7 @@ import COMMENTS_ICON from "@/app/public/icons/comments.svg";
 
 function PostCard() {
   return (
-    <div className="flex flex-col bg-white p-5 mb-[1px] h-[200px]">
+    <div className="flex flex-col bg-white p-5 mb-[2px] h-[200px] w-full">
       <div className="flex gap-2.5 mb-2">
         <Image src={AVATAR} alt="Avatar" className="w-[31px] h-[31px]" />
         <h4 className="text-softGrey text-sm my-auto">Wittawat</h4>
