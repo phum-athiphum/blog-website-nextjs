@@ -1,7 +1,10 @@
-export default function Home() {
+import CommentModal from "./components/modal/CommentModal";
+import PostModal from "./components/modal/PostModal";
+export default function App() {
   return (
-    <div>
-      <p>test</p>
-    </div>
+    <>
+      <CommentModal/>
+      <PostModal/>
+    </>
   );
 }

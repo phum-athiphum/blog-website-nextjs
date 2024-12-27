@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import AVATAR from "@images/profile-avatar.png"
 import GREY_AVATAR from "@images/default-avatar.png";
 function CommentItem() {
   return (
