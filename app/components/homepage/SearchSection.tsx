@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import Dropdown from "../Dropdown";
+import Dropdown from "../dropdown/Dropdown";
 import DefaultButton from "../button/DefaultButton";
 import SEARCH_ICON from "@icons/search.svg";
 import { useCreatePostModalStore } from "@/app/stores/createPostModalStore";
@@ -52,7 +52,7 @@ function SearchSection() {
       {/* Dropdown and Button */}
       {!isActiveSearchMobile && (
         <div className="flex gap-2">
-          <Dropdown isTransperent={true} mobileWidth={"105px"} text={'Community'} />
+          <Dropdown text={'Community'} />
           <div onClick={toggleModal}>
             <DefaultButton
               text="Create +"

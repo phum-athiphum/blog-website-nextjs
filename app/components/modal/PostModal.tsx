@@ -4,7 +4,7 @@ import Image from "next/image";
 import CLOSE_ICON from "@icons/close.svg";
 import OutlineButton from "../button/OutlineButton";
 import DefaultButton from "../button/DefaultButton";
-import Dropdown from "../Dropdown";
+import Dropdown from "../dropdown/ModalDropdown";
 import { useCreatePostModalStore } from "@/app/stores/createPostModalStore";
 
 function PostModal() {
@@ -18,12 +18,12 @@ function PostModal() {
           <Image
             src={CLOSE_ICON}
             alt="Close Icon"
-            className="w-3 h-3 cursor-pointer"
+            className="w-3 h-3 xl:w-4 xl:h-4 cursor-pointer"
             onClick={closeModal}
           />
         </div>
         <div className="my-4 w-full">
-          <Dropdown text={'Choose a community'} />
+          <Dropdown text={'Choose a community'} width={"195px"} />
         </div>
 
         <input
@@ -35,7 +35,7 @@ function PostModal() {
           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 h-[234px] outline-none"
           placeholder="What on your mind ..."
         ></textarea>
-        <div className="flex flex-col xl:flex-row justify-end gap-4 my-4">
+        <div className="flex flex-col xl:flex-row justify-end gap-4 my-4 xl:my-2.5">
           <div onClick={closeModal}>
             <OutlineButton text={"Cancel"} />
           </div>
