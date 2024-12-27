@@ -1,18 +1,12 @@
 import React from "react";
 import PostCard from "../components/PostCard";
-import Dropdown from "../components/Dropdown";
-import DefaultButton from "../components/button/DefaultButton";
+import SearchSection from "../components/homepage/SearchSection";
+import PostModal from "../components/modal/PostModal";
 
 function page() {
   return (
-    <div className="w-[798px]">
-      <div className="flex justify-between mb-4">
-      <input type="text" className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base xl:w-[535px] h-10"/>
-      <div className="flex gap-2">
-          <Dropdown/>
-          <DefaultButton text={"Create"}/>
-      </div>
-      </div>
+    <div className="w-[343px] md:w-[698px] xl:w-[798px] mx-auto py-8 xl:py-0">
+      <SearchSection />
       <div className="rounded-t-2xl overflow-y-scroll">
         <PostCard />
         <PostCard />
@@ -24,6 +18,7 @@ function page() {
         <PostCard />
         <PostCard />
       </div>
+      <PostModal/>
     </div>
   );
 }

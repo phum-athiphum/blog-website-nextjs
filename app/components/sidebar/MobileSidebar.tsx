@@ -10,7 +10,7 @@ function MobileSidebar() {
   const { isOpen, closeSidebar } = useMobileSidebarStore();
   if (!isOpen) return null;
   return (
-    <div className="flex absolute inset-0 z-10 h-screen bg-black bg-opacity-50 xl:hidden">
+    <div className="flex fixed inset-0 z-10 h-full bg-black bg-opacity-50 xl:hidden">
       <div className="w-[25vw] "></div>
       <div className="w-[75vw] rounded-l-[12px] flex flex-col p-8 gap-3 bg-darkgreen text-[#bbc2c0]">
         <Image

@@ -1,28 +1,35 @@
 import React from "react";
+import Image from "next/image";
+import DROPDOWN_ICON from "@icons/dropdown.svg";
+import GREEN_DROPDOWN_ICON from "@icons/green-dropdown.svg";
 
-function Dropdown() {
+
+interface DropdownProps {
+  isTransperent?: boolean;
+  mobileWidth?: string;
+  text: string
+}
+
+function Dropdown({
+  isTransperent = false,
+  mobileWidth = "w-full",
+  text
+}: DropdownProps) {
+  const dropdownStyle = isTransperent
+    ? "bg-transperent text-black font-semibold"
+    : "bg-white text-lightgreen border border-lightgreen";
   return (
     <div>
       <button
-        className="flex justify-center bg-white text-lightgreen border border-lightgreen font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center w-full h-full xl:w-fit"
+        className={`flex justify-center ${dropdownStyle} font-semibold rounded-lg text-sm px-5 py-2.5 text-center items-center ${mobileWidth} h-[40px] xl:w-full`}
         type="button"
       >
-        Choose a community
-        <svg
-          className="w-2.5 h-2.5 ms-3"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 10 6"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="m1 1 4 4 4-4"
-          />
-        </svg>
+        {text}
+        <Image
+          src={isTransperent ? DROPDOWN_ICON : GREEN_DROPDOWN_ICON}
+          alt="dropdown_icon"
+          className="w-[20px] h-[20px] my-auto"
+        />
       </button>
 
       <div className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
