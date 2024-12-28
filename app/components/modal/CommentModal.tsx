@@ -7,7 +7,7 @@ import OutlineButton from "../button/OutlineButton";
 import { useCreateCommentModalStore } from "@/app/stores/createCommentModal";
 
 function CommentModal() {
-  const { isOpen, closeModal } = useCreateCommentModalStore();
+  const { isOpen, closeCreateCommentModal } = useCreateCommentModalStore();
   if (!isOpen) return null;
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -18,7 +18,7 @@ function CommentModal() {
             src={CLOSE_ICON}
             alt="Close Icon"
             className="w-3 h-3 xl:w-4 xl:h-4 cursor-pointer"
-            onClick={closeModal}
+            onClick={closeCreateCommentModal}
           />
         </div>
         <textarea

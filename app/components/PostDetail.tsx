@@ -12,7 +12,7 @@ import CommentModal from "./modal/CommentModal";
 
 function PostDetail() {
   const [isShowTextArea, setIsShowTextArea] = useState<boolean>(false);
-  const { toggleModal } = useCreateCommentModalStore();
+  const { toggleCreateCommentModal } = useCreateCommentModalStore();
 
   const toggleTextArea = () => {
     setIsShowTextArea(!isShowTextArea);
@@ -53,7 +53,7 @@ function PostDetail() {
         <p className="text-softGrey text-xs">32 Comments</p>
       </div>
 
-      <div className="block xl:hidden w-[132px] mb-6" onClick={toggleModal}>
+      <div className="block xl:hidden w-[132px] mb-6" onClick={toggleCreateCommentModal}>
         <OutlineButton text={"Add Comments"} textSize={"12px"} />
       </div>
 
