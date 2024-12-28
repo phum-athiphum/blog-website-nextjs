@@ -11,7 +11,12 @@ function SearchSection() {
 
   const toggleActiveSearchMobile = () =>
     setIsActiveSearchMobile((prev) => !prev);
-  const { toggleModal } = useCreatePostModalStore();
+  const { toggleCreatePostModal, setPostData } = useCreatePostModalStore();
+
+    const handleCreate = () => {
+      setPostData(null);
+      toggleCreatePostModal(false);
+    };
 
   const inputClasses =
     "w-full p-4 pl-10 text-gray-900 border-2 border-gray-300 rounded-lg bg-transparent text-base h-10 focus:outline-none";
@@ -53,7 +58,7 @@ function SearchSection() {
       {!isActiveSearchMobile && (
         <div className="flex gap-2">
           <Dropdown text={'Community'} />
-          <div onClick={toggleModal}>
+          <div onClick={handleCreate}>
             <DefaultButton
               text="Create +"
               mobileHeight="40px"
