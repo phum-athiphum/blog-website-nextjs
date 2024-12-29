@@ -12,6 +12,17 @@ export const getAllPosts = async (): Promise<Post[]> => {
   }
 };
 
+
+export const getPostsById = async (id:string): Promise<Post | null> => {
+    try {
+      const response = await axios.get("http://localhost:8000/posts");
+      return response.data.data;
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+      return null;
+    }
+  };
+
 export const createPosts = async (postData: {
   userId: number;
   title: string;

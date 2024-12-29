@@ -1,9 +1,24 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import LOGO from "@images/logo.png"
-import CommentItem from "../components/CommentItem";
 import SigninForm from "../components/SigninForm";
+import { useRouter } from "next/navigation";
+import { getUsernameFromToken } from "../utils/auth";
 function SignInPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+
+    if (token) {
+      const username = getUsernameFromToken(token)
+      if (username) {
+        router.push("/homepage");
+      }
+
+    }
+  }, [router]);
   return (
     <div>
           <div className="flex flex-col xl:flex-row h-screen w-screen bg-darkgreen">

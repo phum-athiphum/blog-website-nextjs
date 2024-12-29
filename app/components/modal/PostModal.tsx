@@ -6,25 +6,37 @@ import CLOSE_ICON from "@icons/close.svg";
 import OutlineButton from "../button/OutlineButton";
 import DefaultButton from "../button/DefaultButton";
 import Dropdown from "../dropdown/ModalDropdown";
+import { createPosts } from "@/app/services/postService";
 
 function PostModal() {
   const { isOpen, closeCreatePostModal, postData } = useCreatePostModalStore();
 
   const [title, setTitle] = useState(postData?.title || "");
-  const [categoryId, setCategoryId] = useState(postData?.categoryId || "");
   const [description, setDescription] = useState(postData?.description || "");
 
   useEffect(() => {
     if (postData) {
       setTitle(postData.title);
-      setCategoryId(postData.categoryId);
       setDescription(postData.description);
     }
   }, [postData]);
 
-  const handleSubmit = () => {
-    console.log("Submitted data:", { title, categoryId, description });
-    closeCreatePostModal();
+  const handleSubmit = async () => {
+    const postData = {
+      userId: 1,
+      title,
+      categoryId : 1,
+      description,
+    };
+  
+    try {
+     await createPosts(postData);
+    } catch (error) {
+      console.error("Error during post creation:", error);
+    } finally {
+      closeCreatePostModal();
+      window.location.reload()
+    }
   };
 
   if (!isOpen) return null;
