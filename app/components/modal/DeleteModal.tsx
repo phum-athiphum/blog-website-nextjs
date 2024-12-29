@@ -3,8 +3,19 @@ import React from "react";
 import OutlineButton from "../button/OutlineButton";
 import DefaultButton from "../button/DefaultButton";
 import { useDeletePostModalStore } from "@/app/stores/deletePostModalStore";
+import { deletePost } from "@/app/services/postService";
 function DeleteModal() {
-  const { isOpen, closeDeleteModal } = useDeletePostModalStore();
+  const { isOpen, closeDeleteModal, postId } = useDeletePostModalStore();
+
+  const handleDelete = async () => {
+    try {
+       await deletePost(postId);
+      closeDeleteModal()
+      window.location.reload()
+    } catch (error) {
+      console.error("Error during post creation:", error);
+    }
+  };
   if (!isOpen) return null;
   return (
     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -21,7 +32,9 @@ function DeleteModal() {
           <div onClick={closeDeleteModal}>
             <OutlineButton text={"Cancel"} color={"grey"} />
           </div>
-          <DefaultButton text={"Delete"} color={"red"} />
+          <div onClick={handleDelete}>
+            <DefaultButton text={"Delete"} color={"red"} />
+          </div>
         </div>
       </div>
     </div>

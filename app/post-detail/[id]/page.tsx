@@ -1,5 +1,4 @@
 import React from "react";
-import { notFound } from "next/navigation"; // Import notFound to handle missing data
 import PostDetail from "../../components/PostDetail";
 import CommentItem from "../../components/CommentItem";
 import CommentModal from "../../components/modal/CommentModal";
@@ -16,6 +15,8 @@ type Props = {
     id: string;
   };
 };
+
+
 
 export default async function Page({ params }: Props) {
   const { id } = params;
@@ -35,7 +36,7 @@ export default async function Page({ params }: Props) {
             <CommentItem comment={comment} />
           </div>
         )))}
-      <CommentModal />
+      <CommentModal postId={postData.id} />
     </div>
   );
 }

@@ -1,29 +1,27 @@
 import { create } from "zustand";
 
-interface PostData {
-  title: string;
-  categoryId: string;
-  description: string;
-}
+import { Post } from "../types";
 
 interface CreatePostModalStore {
   isOpen: boolean;
-  postData: PostData | null;
-  toggleCreatePostModal: (isEdit: boolean, data?: PostData) => void;
-  setPostData: (data: PostData | null) => void;
+  postData: Post | null;
+  toggleCreatePostModal: (isEdit: boolean, data?: Post) => void;
+  setPostData: (data: Post | null) => void;
   closeCreatePostModal: () => void;
+  resetPostData: () => void; 
 }
 
 export const useCreatePostModalStore = create<CreatePostModalStore>((set) => ({
   isOpen: false,
   postData: null,
-  toggleCreatePostModal: (isEdit: boolean, data?: PostData) => {
+  toggleCreatePostModal: (isEdit: boolean, data?: Post) => {
     if (isEdit && data) {
       set({ isOpen: true, postData: data });
     } else {
       set({ isOpen: true, postData: null });
     }
   },
-  setPostData: (data: PostData | null) => set({ postData: data }),
+  setPostData: (data: Post | null) => set({ postData: data }),
   closeCreatePostModal: () => set({ isOpen: false, postData: null }),
+  resetPostData: () => set({ postData: null }),
 }));

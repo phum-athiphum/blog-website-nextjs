@@ -1,6 +1,8 @@
 export function timeAgo(dateString: string): string {
     const now = new Date();
     const date = new Date(dateString);
+
+    date.setHours(date.getHours() + 7);
     const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
   
     const minutes = 60;
