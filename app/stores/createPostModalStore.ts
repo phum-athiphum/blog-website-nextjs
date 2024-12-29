@@ -8,6 +8,7 @@ interface CreatePostModalStore {
   toggleCreatePostModal: (isEdit: boolean, data?: Post) => void;
   setPostData: (data: Post | null) => void;
   closeCreatePostModal: () => void;
+  resetPostData: () => void; 
 }
 
 export const useCreatePostModalStore = create<CreatePostModalStore>((set) => ({
@@ -22,4 +23,5 @@ export const useCreatePostModalStore = create<CreatePostModalStore>((set) => ({
   },
   setPostData: (data: Post | null) => set({ postData: data }),
   closeCreatePostModal: () => set({ isOpen: false, postData: null }),
+  resetPostData: () => set({ postData: null }),
 }));

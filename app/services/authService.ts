@@ -1,10 +1,10 @@
 import axios from "axios";
 import { getAuthHeaders } from "../utils/auth";
-
+const apiUrl = "http://localhost:8000"
 export const login = async (username: string) => {
   try {
     const response = await axios.post(
-      `http://localhost:8000/auth/login`,
+      `${apiUrl}/auth/login`,
       {
         username: username,
       },

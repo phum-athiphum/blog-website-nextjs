@@ -9,7 +9,6 @@ interface OutlineButton {
 function OutlineButton({
   text,
   color = "green",
-  width = "105px",
   textSize = "14px",
 }: OutlineButton) {
   const buttonOutlineColor =
@@ -18,7 +17,7 @@ function OutlineButton({
       : "border-lightgreen text-lightgreen";
   return (
     <button
-      className={`bg-white  font-semibold py-2 px-4 rounded-lg w-full h-full xl:w-[${width}] xl:h-[40px] border ${buttonOutlineColor} text-[${textSize}]`}
+      className={`bg-white  font-semibold py-2 px-4 rounded-lg w-full h-full xl:h-[40px] border ${buttonOutlineColor} text-[${textSize}]`}
     >
       {text}
     </button>

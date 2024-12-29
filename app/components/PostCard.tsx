@@ -5,7 +5,7 @@ import AVATAR from "@/app/public/images/profile-avatar.png";
 import COMMENTS_ICON from "@/app/public/icons/comments.svg";
 import EDIT_ICON from "@/app/public/icons/edit.svg";
 import TRASH_ICON from "@/app/public/icons/trash.svg";
-import { useCreatePostModalStore } from "../stores/createPostModalStore";
+import { useUpdatePostModalStore } from "../stores/updatePostModalStore";
 import { useDeletePostModalStore } from "../stores/deletePostModalStore";
 import { Post } from "../types";
 import { useRouter } from "next/navigation";
@@ -17,11 +17,11 @@ interface PostCardProps {
 
 function PostCard({ post, canEdit = false }: PostCardProps) {
   const router = useRouter();
-  const { toggleCreatePostModal } = useCreatePostModalStore();
+  const { toggleUpdatePostModal } = useUpdatePostModalStore();
   const { toggleDeleteModal, setPostId } = useDeletePostModalStore();
 
   const handleEdit = () => {
-    toggleCreatePostModal(true, post);
+    toggleUpdatePostModal(true, post);
   };
 
   const handleDelete = () => {
@@ -30,7 +30,7 @@ function PostCard({ post, canEdit = false }: PostCardProps) {
   };
 
   return (
-    <div className="flex flex-col bg-white p-5 mb-[2px] h-[200px] w-full cursor-pointer" onClick={()=>router.push(`/post-detail/${post.id}`)}>
+    <div className="flex flex-col bg-white p-5 mb-[2px] h-[200px] w-full">
       <div className="flex justify-between">
         <div className="flex gap-2.5 mb-2">
           <Image src={AVATAR} alt="Avatar" className="w-[40px] h-[40px]" />
@@ -57,7 +57,7 @@ function PostCard({ post, canEdit = false }: PostCardProps) {
       <mark className="text-mediumGrey text-xs py-1.5 px-2.5  w-fit bg-[#f3f3f3] rounded-xl my-1">
         {post.category.name}
       </mark>
-      <div className="text-darkBlue flex flex-col gap-1">
+      <div className="text-darkBlue flex flex-col gap-1 cursor-pointer" onClick={()=>router.push(`/post-detail/${post.id}`)}>
         <h1 className="text-base font-semibold">{post.title}</h1>
         <p className="line-clamp-2 text-xs">{post.description}</p>
       </div>
