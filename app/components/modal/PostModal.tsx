@@ -10,19 +10,13 @@ import { createPosts } from "@/app/services/postService";
 import { getUserId } from "@/app/utils/auth";
 
 function PostModal() {
-  const { isOpen, closeCreatePostModal, postData } = useCreatePostModalStore();
+  const { isOpen, closeCreatePostModal} = useCreatePostModalStore();
   const [userId, setUserId] = useState<number | null>(null);
 
-  const [title, setTitle] = useState(postData?.title || "");
-  const [description, setDescription] = useState(postData?.description || "");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [categoryId, setCategoryId] = useState<number | null>(null);
 
-  useEffect(() => {
-    if (postData) {
-      setTitle(postData.title);
-      setDescription(postData.description);
-    }
-  }, [postData]);
 
   useEffect(() => {
     const id = getUserId();
@@ -38,9 +32,9 @@ function PostModal() {
   const handleSubmit = async () => {
     const postData = {
       userId: userId!,
-      title,
+      title : title,
       categoryId: categoryId!,
-      description,
+      description :description,
     };
 
     try {
