@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Category } from "../types";
-const apiUrl = "http://localhost:8000"
+const apiUrl = process.env.API_URL
 export const getAllCategory = async (): Promise<Category[]> => {
     try {
       const response = await axios.get(`${apiUrl}/category`);

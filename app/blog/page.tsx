@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import SearchSection from "../components/homepage/SearchSection";
 import UpdatePostModal from "../components/modal/UpdatePostModal";
 import DeleteModal from "../components/modal/DeleteModal";
-import axios from "axios";
 import PostCard from "../components/PostCard";
 import { Post } from "../types";
 import PostModal from "../components/modal/PostModal";
