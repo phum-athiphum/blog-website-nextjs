@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getAuthHeaders } from "../utils/auth";
-const apiUrl = "http://localhost:8000"
+const apiUrl = process.env.API_URL
 export const login = async (username: string) => {
   try {
     const response = await axios.post(
