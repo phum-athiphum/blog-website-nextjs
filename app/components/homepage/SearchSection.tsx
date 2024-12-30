@@ -21,11 +21,10 @@ function SearchSection({
     setSearchValue("")
   }
 
-  const { toggleCreatePostModal, resetPostData } = useCreatePostModalStore();
+  const { toggleCreatePostModal} = useCreatePostModalStore();
 
   const handleCreate = () => {
-    resetPostData();
-    toggleCreatePostModal(false);
+    toggleCreatePostModal();
   };
 
   const handleSelectCategory = (selectedCategoryId: number | null) => {

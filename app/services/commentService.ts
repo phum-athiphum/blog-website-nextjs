@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getAuthHeaders } from "../utils/auth";
 
-const apiUrl = "http://localhost:8000"
+const apiUrl = process.env.API_URL
 export const createComment = async (commentData: {
     postId:number;
     userId: number;
