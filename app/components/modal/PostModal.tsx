@@ -8,15 +8,17 @@ import DefaultButton from "../button/DefaultButton";
 import Dropdown from "../dropdown/ModalDropdown";
 import { createPosts } from "@/app/services/postService";
 import { getUserId } from "@/app/utils/auth";
+import { useDefaultErrortModalStore } from "@/app/stores/defaultErorModalStore";
 
 function PostModal() {
-  const { isOpen, closeCreatePostModal} = useCreatePostModalStore();
+  const { isOpen, closeCreatePostModal } = useCreatePostModalStore();
+  const { setDescription, toggleErrorModal } = useDefaultErrortModalStore();
   const [userId, setUserId] = useState<number | null>(null);
 
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [newDescription, setNewDescription] = useState("");
   const [categoryId, setCategoryId] = useState<number | null>(null);
-
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const id = getUserId();
@@ -29,21 +31,51 @@ function PostModal() {
     setCategoryId(categoryId);
   };
 
+  const handleCloseModal = () => {
+    setTitle("");
+    setNewDescription("");
+    setCategoryId(null);
+    setError(null);
+    closeCreatePostModal();
+  };
+
   const handleSubmit = async () => {
-    const postData = {
+    if (!title.trim()) {
+      setError("Title is required.");
+      return;
+    }
+
+    if (!categoryId) {
+      setError("Please select a category.");
+      return;
+    }
+
+    if (!newDescription.trim()) {
+      setError("Description is required.");
+      return;
+    }
+
+    const data = {
       userId: userId!,
-      title : title,
+      title,
       categoryId: categoryId!,
-      description :description,
+      description : newDescription,
     };
 
     try {
-      await createPosts(postData);
+      const errorMessage = await createPosts(data);
+
+      if (errorMessage) {
+        closeCreatePostModal();
+        setDescription(errorMessage)
+        toggleErrorModal()
+      } else {
+        closeCreatePostModal();
+        window.location.reload();
+      }
     } catch (error) {
       console.error("Error during post creation:", error);
-    } finally {
-      closeCreatePostModal();
-      window.location.reload();
+      setError("An error occurred while creating the post. Please try again.");
     }
   };
 
@@ -58,7 +90,7 @@ function PostModal() {
             src={CLOSE_ICON}
             alt="Close Icon"
             className="w-3 h-3 xl:w-4 xl:h-4 cursor-pointer"
-            onClick={closeCreatePostModal}
+            onClick={handleCloseModal}
           />
         </div>
         <div className="my-4 w-full">
@@ -72,18 +104,23 @@ function PostModal() {
         <input
           type="text"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => {
+            setTitle(e.target.value);
+            if (error) setError(null);
+          }}
           placeholder="Title"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full h-[44px] p-2 mb-5 outline-none"
         />
         <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={newDescription}
+          onChange={(e) => setNewDescription(e.target.value)}
           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 h-[234px] outline-none"
           placeholder="What on your mind ..."
         ></textarea>
+
         <div className="flex flex-col xl:flex-row justify-end gap-4 my-4 xl:my-2.5">
-          <div onClick={closeCreatePostModal}>
+          {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+          <div onClick={handleCloseModal}>
             <OutlineButton text={"Cancel"} />
           </div>
           <div onClick={handleSubmit}>
@@ -96,3 +133,5 @@ function PostModal() {
 }
 
 export default PostModal;
+
+

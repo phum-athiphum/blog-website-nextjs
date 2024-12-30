@@ -5,6 +5,7 @@ import Dropdown from "../dropdown/Dropdown";
 import DefaultButton from "../button/DefaultButton";
 import SEARCH_ICON from "@icons/search.svg";
 import { useCreatePostModalStore } from "@/app/stores/createPostModalStore";
+import { useDefaultErrortModalStore } from "@/app/stores/defaultErorModalStore";
 interface SearchSectionProps {
   onCategoryChange: (categoryId: number | null) => void;
   onSearchChange: (searchTerm: string) => void;
@@ -15,6 +16,7 @@ function SearchSection({
 }: SearchSectionProps) {
   const [isActiveSearchMobile, setIsActiveSearchMobile] = useState(false);
   const [searchValue, setSearchValue] = useState<string>("");
+  const {toggleErrorModal, setDescription} = useDefaultErrortModalStore()
 
   const toggleActiveSearchMobile = () => {
     setIsActiveSearchMobile((prev) => !prev);
@@ -24,7 +26,15 @@ function SearchSection({
   const { toggleCreatePostModal} = useCreatePostModalStore();
 
   const handleCreate = () => {
-    toggleCreatePostModal();
+    console.log("29");
+    const token = localStorage.getItem("accessToken")
+    if (token) {
+      toggleCreatePostModal();
+    } else {
+      setDescription("Please Login to create post, or token valid or expired")
+      toggleErrorModal()
+    }
+
   };
 
   const handleSelectCategory = (selectedCategoryId: number | null) => {
