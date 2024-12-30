@@ -6,7 +6,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 #สิ่งที่สามารถพัฒนาได้หากมีเวลาปรับปรุงเพิ่ม
 - จะทําให้หน้า homepage กับ หน้า blog ให้เป็น server component เพื่อให้ดีต่อ seo มากขึ้น (ตอนนี้มีหน้ส post-detail ที่เป็น server component) handle 
-- ทํา modal handle error และ display ตาม message ที่ backend ได้ส่งมา 
+- ทํา modal handle error ให้ครบทุกเคส (ตอนนี้มี handle create post, update post , delete post)
 
 #First, install depedencies
 ```bash
