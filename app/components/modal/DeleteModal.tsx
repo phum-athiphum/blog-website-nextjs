@@ -4,16 +4,27 @@ import OutlineButton from "../button/OutlineButton";
 import DefaultButton from "../button/DefaultButton";
 import { useDeletePostModalStore } from "@/app/stores/deletePostModalStore";
 import { deletePost } from "@/app/services/postService";
+import { useDefaultErrortModalStore } from "@/app/stores/defaultErorModalStore";
 function DeleteModal() {
   const { isOpen, closeDeleteModal, postId } = useDeletePostModalStore();
+  const { setDescription, toggleErrorModal } = useDefaultErrortModalStore();
 
   const handleDelete = async () => {
-    try {
-       await deletePost(postId);
-      closeDeleteModal()
-      window.location.reload()
-    } catch (error) {
-      console.error("Error during post creation:", error);
+    if (!postId) {
+      setDescription("Invalid post ID");
+      toggleErrorModal();
+      return;
+    }
+
+    const errorMessage = await deletePost(postId);
+
+    if (!errorMessage) {
+      closeDeleteModal();
+      window.location.reload();
+    } else {
+      closeDeleteModal();
+      setDescription(errorMessage);
+      toggleErrorModal();
     }
   };
   if (!isOpen) return null;

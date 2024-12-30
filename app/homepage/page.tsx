@@ -3,10 +3,9 @@ import React, { useState, useEffect } from "react";
 import PostCard from "../components/PostCard";
 import SearchSection from "../components/homepage/SearchSection";
 import PostModal from "../components/modal/PostModal";
-import axios from "axios";
 import { Post } from "../types";
 import { getAllPosts } from "../services/postService";
-
+import ErrorModal from "../components/modal/DefaultErrorModal";
 
 async function fetchPosts(category: string, search: string): Promise<Post[]> {
   try {
@@ -51,6 +50,7 @@ const Page = ({ searchParams }: { searchParams: { category: string } }) => {
         ))}
       </div>
       <PostModal />
+      <ErrorModal />
     </div>
   );
 };
