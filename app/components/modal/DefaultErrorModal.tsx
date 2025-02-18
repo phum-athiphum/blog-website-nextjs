@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import DefaultButton from "../button/DefaultButton";
-import { useDefaultErrortModalStore } from "@/app/stores/defaultErorModalStore";
+import { useDefaultErrortModalStore } from "@/app/stores/defaultErrorModalStore";
 function ErrorModal() {
   const { isOpen, closeErrorModal, description } = useDefaultErrortModalStore();
 

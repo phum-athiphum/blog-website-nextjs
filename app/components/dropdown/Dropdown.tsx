@@ -76,7 +76,7 @@ function Dropdown({ text, onSelectCategory }: DropdownProps) {
               </p>
             </li>
             {categories.map((category) => (
-              <li onClick={() => handleSelectCategory(category)}>
+              <li key={category.id} onClick={() => handleSelectCategory(category)}>
                 <p
                   className={`flex justify-between px-4 py-2 hover:bg-[#d8e9e4]  ${
                     selectedCategory?.id === category.id ? "bg-[#d8e9e4]" : ""

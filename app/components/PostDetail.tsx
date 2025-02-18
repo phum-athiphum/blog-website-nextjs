@@ -8,10 +8,9 @@ import OutlineButton from "./button/OutlineButton";
 import DefaultButton from "./button/DefaultButton";
 import { useCreateCommentModalStore } from "../stores/createCommentModal";
 import CommentModal from "./modal/CommentModal";
-import { Post, Comment } from "../types";
+import { Post } from "../types";
 import { timeAgo } from "../utils/date";
 import { useRouter } from "next/navigation";
-import axios from "axios";
 import { createComment } from "../services/commentService";
 
 interface PostDetailProps {
@@ -22,13 +21,12 @@ function PostDetail({ post }: PostDetailProps) {
   const router = useRouter();
   const [isShowTextArea, setIsShowTextArea] = useState<boolean>(false);
   const [newComment, setNewComment] = useState<string>("");
-  const [comments, setComments] = useState<Comment[]>(post.comments);
   const { toggleCreateCommentModal } = useCreateCommentModalStore();
   const [error, setError] = useState<string | null>(null);
 
   const toggleTextArea = () => {
     setIsShowTextArea(!isShowTextArea);
-    setNewComment("")
+    setNewComment("");
   };
 
   const handlePostComment = async () => {
@@ -80,7 +78,7 @@ function PostDetail({ post }: PostDetailProps) {
       </div>
       <div className="flex gap-2 mb-8">
         <Image src={COMMENTS_ICON} alt="Comments Icon" className="w-4 h-4" />
-        <p className="text-softGrey text-xs">{comments.length} Comments</p>
+        <p className="text-softGrey text-xs">{post.comments.length} Comments</p>
       </div>
 
       <div
@@ -98,6 +96,7 @@ function PostDetail({ post }: PostDetailProps) {
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
           ></textarea>
+          {error && <p className="text-red-500 text-xs">{error}</p>}˝
           <div className="flex flex-col xl:flex-row justify-end gap-4 my-2 xl:my-2.5">
             <div onClick={toggleTextArea}>
               <OutlineButton text={"Cancel"} />
@@ -108,11 +107,11 @@ function PostDetail({ post }: PostDetailProps) {
           </div>
         </>
       ) : (
-        <div className="mb-6 hidden xl:block w-[132px]" onClick={toggleTextArea}>
-          <OutlineButton
-            text={"Add Comments"}
-            textSize="12px"
-          />
+        <div
+          className="mb-6 hidden xl:block w-[132px]"
+          onClick={toggleTextArea}
+        >
+          <OutlineButton text={"Add Comments"} textSize="12px" />
         </div>
       )}
     </div>

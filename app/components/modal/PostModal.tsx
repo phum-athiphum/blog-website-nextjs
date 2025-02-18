@@ -8,7 +8,7 @@ import DefaultButton from "../button/DefaultButton";
 import Dropdown from "../dropdown/ModalDropdown";
 import { createPosts } from "@/app/services/postService";
 import { getUserId } from "@/app/utils/auth";
-import { useDefaultErrortModalStore } from "@/app/stores/defaultErorModalStore";
+import { useDefaultErrortModalStore } from "@/app/stores/defaultErrorModalStore";
 
 function PostModal() {
   const { isOpen, closeCreatePostModal } = useCreatePostModalStore();

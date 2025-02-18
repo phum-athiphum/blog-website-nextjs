@@ -6,18 +6,18 @@ import OutlineButton from "../button/OutlineButton";
 import DefaultButton from "../button/DefaultButton";
 import Dropdown from "../dropdown/ModalDropdown";
 import { updatePost } from "@/app/services/postService";
-import { getUserId } from "@/app/utils/auth";
 import { useUpdatePostModalStore } from "@/app/stores/updatePostModalStore";
-import { useDefaultErrortModalStore } from "@/app/stores/defaultErorModalStore";
-
+import { useDefaultErrortModalStore } from "@/app/stores/defaultErrorModalStore";
 
 function UpdatePostModal() {
   const { isOpen, closeUpdatePostModal, postData } = useUpdatePostModalStore();
-  const [userId, setUserId] = useState<number | null>(null);
+  // const [userId, setUserId] = useState<number | null>(null);
   const { setDescription, toggleErrorModal } = useDefaultErrortModalStore();
 
   const [title, setTitle] = useState(postData?.title || "");
-  const [updateDescription, setUpdateDescription] = useState(postData?.description || "");
+  const [updateDescription, setUpdateDescription] = useState(
+    postData?.description || ""
+  );
   const [categoryId, setCategoryId] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -25,16 +25,9 @@ function UpdatePostModal() {
     if (postData) {
       setTitle(postData.title);
       setUpdateDescription(postData.description);
-      setCategoryId(postData.category.id)
+      setCategoryId(postData.category.id);
     }
   }, [postData]);
-
-  useEffect(() => {
-    const id = getUserId();
-    if (id) {
-      setUserId(id);
-    }
-  }, []);
 
   const handleSelectCategory = (categoryId: number | null) => {
     setCategoryId(categoryId);
@@ -59,7 +52,7 @@ function UpdatePostModal() {
     const data = {
       title,
       categoryId: categoryId!,
-      description : updateDescription,
+      description: updateDescription,
     };
 
     try {
@@ -68,7 +61,7 @@ function UpdatePostModal() {
       if (errorMessage) {
         closeUpdatePostModal();
         setDescription(errorMessage);
-        toggleErrorModal()
+        toggleErrorModal();
       } else {
         closeUpdatePostModal();
         window.location.reload();
@@ -129,4 +122,3 @@ function UpdatePostModal() {
 }
 
 export default UpdatePostModal;
-

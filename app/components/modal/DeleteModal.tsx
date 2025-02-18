@@ -4,7 +4,7 @@ import OutlineButton from "../button/OutlineButton";
 import DefaultButton from "../button/DefaultButton";
 import { useDeletePostModalStore } from "@/app/stores/deletePostModalStore";
 import { deletePost } from "@/app/services/postService";
-import { useDefaultErrortModalStore } from "@/app/stores/defaultErorModalStore";
+import { useDefaultErrortModalStore } from "@/app/stores/defaultErrorModalStore";
 function DeleteModal() {
   const { isOpen, closeDeleteModal, postId } = useDeletePostModalStore();
   const { setDescription, toggleErrorModal } = useDefaultErrortModalStore();

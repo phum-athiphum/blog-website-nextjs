@@ -5,7 +5,7 @@ import Dropdown from "../dropdown/Dropdown";
 import DefaultButton from "../button/DefaultButton";
 import SEARCH_ICON from "@icons/search.svg";
 import { useCreatePostModalStore } from "@/app/stores/createPostModalStore";
-import { useDefaultErrortModalStore } from "@/app/stores/defaultErorModalStore";
+import { useDefaultErrortModalStore } from "@/app/stores/defaultErrorModalStore";
 interface SearchSectionProps {
   onCategoryChange: (categoryId: number | null) => void;
   onSearchChange: (searchTerm: string) => void;
